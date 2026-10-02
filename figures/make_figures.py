@@ -10,7 +10,7 @@ import mne
 import numpy as np
 from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch
 
-import brainhack_eegfm as be
+import meeg_fm as mf
 
 NAVY, BLUE, ORANGE, GREY, LIGHT, TRACE = "#0B2545", "#0B5CAD", "#E8710A", "#5B6472", "#EEF3F9", "#9AA3AF"
 OUT = Path(__file__).parent
@@ -74,8 +74,8 @@ def setup_pipeline():
 
     # 3. data: 2 s of a real trial (participant 1, first left-hand trial, 1-40 Hz) on C3, Cz, C4
     card(fig, xs[2], w, "3", "Download", "BCI IV 2a, 780 MB", "moabb")
-    be.use_data_dir()
-    X, y, _ = be.load_epochs([1], fmin=1, fmax=40)
+    mf.use_data_dir()
+    X, y, _ = mf.load_epochs([1], fmin=1, fmax=40)
     trial = X[np.flatnonzero(y == "left_hand")[0], :, 250:750]   # 1 to 3 s after the cue, 250 Hz
     shown = ["C3", "Cz", "C4"]
 
@@ -84,7 +84,7 @@ def setup_pipeline():
     head.set_aspect("equal")
     head.add_patch(Circle((0, 0), 1, facecolor="white", edgecolor=GREY, lw=1))
     head.plot([-0.12, 0, 0.12], [0.99, 1.14, 0.99], color=GREY, lw=1)          # nose
-    for name, (ex, ey) in electrode_xy(be.CHANNELS).items():
+    for name, (ex, ey) in electrode_xy(mf.CHANNELS).items():
         on = name in shown
         head.plot(ex, ey, "o", ms=3.6 if on else 2.2, color=ORANGE if on else TRACE)
     head.set_xlim(-1.1, 1.1)
@@ -95,7 +95,7 @@ def setup_pipeline():
     ax.set_axis_off()
     t = np.arange(trial.shape[1]) / 250
     for i, name in enumerate(shown):
-        ax.plot(t, trial[be.CHANNELS.index(name)] - 50 * i, color=NAVY, lw=0.55)
+        ax.plot(t, trial[mf.CHANNELS.index(name)] - 50 * i, color=NAVY, lw=0.55)
         ax.text(-0.06, -50 * i, name, color=GREY, fontsize=9, ha="right", va="center")
     ax.plot([0, 1], [-135, -135], color=GREY, lw=1.2)                              # time scale
     ax.text(0.5, -148, "1 s", color=GREY, fontsize=8.5, ha="center", va="center")
@@ -205,13 +205,13 @@ def decoding_pipelines():
         ax.text(x, 3.75, title, color=NAVY, fontsize=11, fontweight="bold", va="center")
 
     # a real trial (participant 1, first left-hand trial, 8-30 Hz), six of its 22 channels
-    be.use_data_dir()
-    X, y, _ = be.load_epochs([1], fmin=8, fmax=30)
+    mf.use_data_dir()
+    X, y, _ = mf.load_epochs([1], fmin=8, fmax=30)
     trial = X[np.flatnonzero(y == "left_hand")[0]]
     box(ax, 0.1, 0.55, 2.5, 2.8, "", color="white", edge=TRACE)
     t = np.linspace(0.25, 2.45, 500)
     for k, name in enumerate(["FC3", "C3", "Cz", "C4", "CP4", "Pz"]):
-        ax.plot(t, 3.05 - 0.42 * k + trial[be.CHANNELS.index(name), 250:750] / 55, color=NAVY, lw=0.5)
+        ax.plot(t, 3.05 - 0.42 * k + trial[mf.CHANNELS.index(name), 250:750] / 55, color=NAVY, lw=0.5)
     ax.text(1.35, 0.3, "22 channels × 1000 samples", ha="center", color=GREY, fontsize=9.5)
 
     rows = [(2.25, BLUE, "CSP\n4 spatial filters", "4 numbers\n(log power)", "LDA"),
@@ -303,13 +303,13 @@ def reve_tokens():
         ax.text(x, 3.8, title, color=NAVY, fontsize=11, fontweight="bold", va="center")
 
     # a real trial (participant 1, first left-hand trial), five of its 22 channels, with the patch borders
-    be.use_data_dir()
-    X, y, _ = be.load_epochs([1], fmin=1, fmax=40)
+    mf.use_data_dir()
+    X, y, _ = mf.load_epochs([1], fmin=1, fmax=40)
     trial = X[np.flatnonzero(y == "left_hand")[0]]
     names = ["FC3", "C3", "Cz", "C4", "CP4"]
     t = np.linspace(0.6, 4.2, trial.shape[1])
     for k, name in enumerate(names):
-        ax.plot(t, 3.0 - 0.55 * k + trial[be.CHANNELS.index(name)] / 75, color=NAVY, lw=0.4)
+        ax.plot(t, 3.0 - 0.55 * k + trial[mf.CHANNELS.index(name)] / 75, color=NAVY, lw=0.4)
         ax.text(0.5, 3.0 - 0.55 * k, name, ha="right", va="center", color=GREY, fontsize=9)
     for k in range(5):
         ax.plot([0.6 + 0.9 * k] * 2, [0.45, 3.35], color=ORANGE, lw=1, ls="--")

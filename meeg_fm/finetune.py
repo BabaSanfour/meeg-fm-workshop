@@ -89,6 +89,6 @@ def finetune_reve(X_train, y_train, X_eval=None, y_eval=None, head_epochs=5, epo
 
 
 def load_precomputed(name):
-    """A table saved by scripts/precompute_finetune.py: "history", "predictions" or "embeddings"."""
+    """A table saved by meeg_fm/precompute_finetune.py: "history", "predictions" or "embeddings"."""
     import pandas as pd
     return pd.read_csv(Path(__file__).parent / "precomputed" / f"finetune_{name}.csv")

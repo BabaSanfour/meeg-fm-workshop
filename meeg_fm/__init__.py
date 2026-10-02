@@ -1,4 +1,4 @@
-"""Helpers shared by the Brainhack EEG foundation-model notebooks.
+"""Helpers shared by the M/EEG foundation-model workshop notebooks.
 
 The notebooks show the important code; this package holds what participants
 do not need to read (data folders, downloads, the REVE embedding cache).

@@ -3,9 +3,9 @@ requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "brainhack-eegfm"
+name = "meeg-fm"
 version = "0.1.0"
-description = "Brainhack tutorial: do foundation models beat classical EEG decoding?"
+description = "Workshop notebooks: do foundation models beat classical EEG decoding?"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "BSD-3-Clause" }
@@ -33,7 +33,7 @@ dependencies = [
 jupyter = ["jupyterlab", "ipykernel"]
 
 [tool.setuptools.packages.find]
-where = ["src"]
+include = ["meeg_fm*"]
 
 [tool.setuptools.package-data]
-brainhack_eegfm = ["cache/*.npz", "cache/*.json", "precomputed/*.csv"]
+meeg_fm = ["cache/*.npz", "cache/*.json", "precomputed/*.csv"]

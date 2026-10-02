@@ -1,19 +1,19 @@
 # Do foundation models beat classical EEG decoding?
 
-Hands-on notebooks for a Brainhack workshop on M/EEG foundation models. One small EEG dataset, left hand against right hand, decoded four ways on the same trials and the same train/test split: two classical decoders, a pretrained model (REVE) used frozen, and the same model fine-tuned.
+Hands-on notebooks for a workshop on M/EEG foundation models. One small EEG dataset, left hand against right hand, decoded four ways on the same trials and the same train/test split: two classical decoders, a pretrained model (REVE) used frozen, and the same model fine-tuned.
 
 ## Notebooks
 
-Run them in order. Each one saves its scores in `results/`, and notebooks 3 to 5 read the scores of the earlier ones.
+They are in `notebooks/`. Run them in order: each one saves its scores in `notebooks/results/`, and notebooks 3 to 5 read the scores of the earlier ones.
 
 | | Notebook | Content |
 |---|---|---|
-| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/00_setup.ipynb) | `00_setup` | Check the computer, download the data |
-| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/01_data.ipynb) | `01_data` | The experiment, mu and beta rhythms, hand-made features and a first model |
-| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/02_classical.ipynb) | `02_classical` | CSP + LDA, tangent space + logistic regression |
-| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/03_fm_frozen.ipynb) | `03_fm_frozen` | REVE embeddings and a linear probe |
-| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/04_fm_finetune.ipynb) | `04_fm_finetune` | How a network learns, fine-tuning REVE |
-| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/05_compare.ipynb) | `05_compare` | One table, per-person scores, confidence intervals and tests |
+| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/notebooks/00_setup.ipynb) | `00_setup` | Check the computer, download the data |
+| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/notebooks/01_data.ipynb) | `01_data` | The experiment, mu and beta rhythms, hand-made features and a first model |
+| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/notebooks/02_classical.ipynb) | `02_classical` | CSP + LDA, tangent space + logistic regression |
+| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/notebooks/03_fm_frozen.ipynb) | `03_fm_frozen` | REVE embeddings and a linear probe |
+| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/notebooks/04_fm_finetune.ipynb) | `04_fm_finetune` | How a network learns, fine-tuning REVE |
+| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/notebooks/05_compare.ipynb) | `05_compare` | One table, per-person scores, confidence intervals and tests |
 
 The notebooks are saved with their outputs, so they can be read without running anything.
 
@@ -39,11 +39,9 @@ A laptop is enough. Fine-tuning (notebook 4) needs a GPU, so its runs are saved 
 
 ## Layout
 
-- `0*_*.ipynb`: the notebooks.
-- `src/brainhack_eegfm/`: helper code (data, REVE, fine-tuning), the cached REVE embeddings (`cache/`) and the saved fine-tuning runs (`precomputed/`).
-- `scripts/`: the scripts that produced the saved fine-tuning runs.
+- `notebooks/`: the six notebooks, and `results/` with the scores written by notebooks 2 to 4.
+- `meeg_fm/`: the helper code (data, REVE, fine-tuning), the two scripts that produced the saved fine-tuning runs, the cached REVE embeddings (`cache/`) and those saved runs (`precomputed/`).
 - `figures/`: the concept figures embedded in the notebooks, and the script that draws them.
-- `results/`: the scores written by notebooks 2 to 4.
 
 ## Licence
 

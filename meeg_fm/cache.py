@@ -14,7 +14,7 @@ import numpy as np
 from .data import CHANNELS, CLASSES, SUBJECTS, data_dir, load_epochs
 from .reve import CLIP, MODEL_ID, SFREQ, embed, load_reve
 
-CACHE_DIR = Path(str(files("brainhack_eegfm").joinpath("cache")))   # ships with the package
+CACHE_DIR = Path(str(files("meeg_fm").joinpath("cache")))   # ships with the package
 BAND_HZ = (0.5, 99.5)
 WINDOW_S = (0.0, 4.0)
 

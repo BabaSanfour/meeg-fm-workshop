@@ -1,7 +1,7 @@
 """Fine-tune REVE once and save what notebook 4 shows when no GPU is available.
 
-Run from the repository folder: python scripts/precompute_finetune.py
-Writes three small tables to src/brainhack_eegfm/precomputed/ (about 20 minutes on an Apple GPU):
+Run from the repository folder: python -m meeg_fm.precompute_finetune
+Writes three small tables to meeg_fm/precomputed/ (about 20 minutes on an Apple GPU):
   finetune_history.csv      one row per run and pass: loss, accuracy on training and on held-out day-1 trials
   finetune_predictions.csv  one row per run and day-2 trial: probability of "right hand"
   finetune_embeddings.csv   every trial in the two main directions of the fine-tuned model's embeddings
@@ -15,15 +15,15 @@ from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-import brainhack_eegfm as be
-from brainhack_eegfm.finetune import finetune_reve, predict_proba
+import meeg_fm as mf
+from meeg_fm.finetune import finetune_reve, predict_proba
 
-OUT = Path(be.__file__).parent / "precomputed"
+OUT = Path(mf.__file__).parent / "precomputed"
 RECIPE = dict(head_epochs=3, epochs=10, head_lr=1e-4, lr=3e-5, batch_size=32)      # chosen on held-out day-1 trials
-RIGHT = be.CLASSES.index("right_hand")
+RIGHT = mf.CLASSES.index("right_hand")
 
-be.use_data_dir()
-X, y, meta = be.load_epochs(be.SUBJECTS, sfreq=200, fmin=0.5, fmax=99.5)
+mf.use_data_dir()
+X, y, meta = mf.load_epochs(mf.SUBJECTS, sfreq=200, fmin=0.5, fmax=99.5)
 subject = meta["subject"].to_numpy()
 train = (meta["session"] == "0train").to_numpy()
 test = ~train
@@ -48,8 +48,8 @@ model = run("all participants", fit, held_out, **RECIPE)
 
 # the embeddings of that model, reduced to two directions for a figure
 import torch
-pos = model.get_positions(be.CHANNELS).to(next(model.parameters()).device)
-x = torch.from_numpy(be.reve.normalize(X))
+pos = model.get_positions(mf.CHANNELS).to(next(model.parameters()).device)
+x = torch.from_numpy(mf.reve.normalize(X))
 features = []
 model.eval()
 with torch.no_grad():
@@ -67,12 +67,12 @@ run("all participants, large learning rate", fit, held_out, head_epochs=0, epoch
 
 # 3. one model for everyone with 10 % of the labels: 14 trials per participant
 few = np.concatenate([train_test_split(np.flatnonzero(train & (subject == s)), train_size=14,
-                                       stratify=y[train & (subject == s)], random_state=0)[0] for s in be.SUBJECTS])
+                                       stratify=y[train & (subject == s)], random_state=0)[0] for s in mf.SUBJECTS])
 rest = np.setdiff1d(np.flatnonzero(train), few)
 run("all participants, 10 % of the labels", few, np.random.default_rng(0).choice(rest, 200, replace=False), **RECIPE)
 
 # 4. one model per participant, trained on that participant only
-for s in be.SUBJECTS:
+for s in mf.SUBJECTS:
     own = np.flatnonzero(train & (subject == s))
     fit_s, held_out_s = train_test_split(own, test_size=0.15, stratify=y[own], random_state=0)
     run(f"participant {s} alone", fit_s, held_out_s, **{**RECIPE, "batch_size": 16})

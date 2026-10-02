@@ -38,7 +38,7 @@ def data_dir():
         return Path(os.environ["EEGFM_DATA"])
     if in_colab():
         drive = Path("/content/drive/MyDrive")
-        return drive / "brainhack-eegfm" if drive.exists() else Path("/content/brainhack-eegfm")
+        return drive / "meeg-fm" if drive.exists() else Path("/content/meeg-fm")
     import mne
     return Path(mne.get_config("MNE_DATA") or Path.home() / "mne_data")
 
