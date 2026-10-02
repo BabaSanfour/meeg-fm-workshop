@@ -53,6 +53,26 @@ def use_data_dir(path=None):
     return path
 
 
+def head_info(sfreq=250):
+    """Electrode positions for drawing maps of the 22 channels, and the matching head circle.
+
+    Returns (info, sphere). The positions are the standard 10-20 ones, moved so that the
+    head circle passes through Fpz, T7, T8 and Oz, as in textbook drawings of the 10-20
+    system. Give both to the MNE plotting functions: plot_sensors(info, sphere=sphere),
+    plot_topomap(values, info, sphere=sphere).
+    """
+    import mne
+    names = CHANNELS + ["Fpz", "T7", "T8", "Oz"]
+    full = mne.create_info(names, sfreq, "eeg").set_montage("standard_1020")
+    position = {ch["ch_name"]: ch["loc"][:3].copy() for ch in full["chs"]}
+    centre = np.array([(position["T7"][0] + position["T8"][0]) / 2, (position["Fpz"][1] + position["Oz"][1]) / 2,
+                       np.mean([position[name][2] for name in names[-4:]])])
+    radius = float(np.mean([np.linalg.norm(position[name] - centre) for name in names[-4:]]))
+    montage = mne.channels.make_dig_montage({name: position[name] - centre for name in CHANNELS}, coord_frame="head")
+    info = mne.create_info(CHANNELS, sfreq, "eeg").set_montage(montage)
+    return info, (0.0, 0.0, 0.0, radius)
+
+
 def _dataset():
     from moabb.datasets import BNCI2014_001
     return BNCI2014_001()
