@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Environments
+.venv/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data and model weights downloaded by the notebooks
+mne_data/
+reve_cache/
+*.mat
+*.safetensors
+
+# Editors and OS
+.DS_Store
+.vscode/
+.idea/

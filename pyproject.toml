@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brainhack-eegfm"
+version = "0.1.0"
+description = "Brainhack tutorial: do foundation models beat classical EEG decoding?"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "BSD-3-Clause" }
+dependencies = [
+    "numpy>=2.0",
+    "scipy>=1.10",
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+    "scikit-learn>=1.6",
+    "mne>=1.10",
+    "moabb>=1.2",
+    "pyriemann>=0.7",
+    "torch>=2.2",
+    "braindecode>=1.8.1",
+    "huggingface_hub>=0.20",
+    "safetensors",
+    "pooch>=1.6",
+    "tqdm",
+    "packaging",
+    "ipywidgets",                # progress bars in notebooks
+]
+
+[project.optional-dependencies]
+# Local runs outside VS Code: `pip install -e ".[jupyter]"`, then `jupyter lab`
+jupyter = ["jupyterlab", "ipykernel"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+brainhack_eegfm = ["cache/*.npz", "cache/*.json", "precomputed/*.csv"]

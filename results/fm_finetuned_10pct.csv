@@ -1,0 +1,10 @@
+subject,balanced_accuracy,method,training_data,training_labels,adapted_parameters,hardware
+1,0.5243055555555556,REVE fine-tuned,everyone's day 1,10 %,all,GPU
+2,0.5520833333333334,REVE fine-tuned,everyone's day 1,10 %,all,GPU
+3,0.4444444444444444,REVE fine-tuned,everyone's day 1,10 %,all,GPU
+4,0.545138888888889,REVE fine-tuned,everyone's day 1,10 %,all,GPU
+5,0.4756944444444444,REVE fine-tuned,everyone's day 1,10 %,all,GPU
+6,0.5520833333333334,REVE fine-tuned,everyone's day 1,10 %,all,GPU
+7,0.4861111111111111,REVE fine-tuned,everyone's day 1,10 %,all,GPU
+8,0.5381944444444444,REVE fine-tuned,everyone's day 1,10 %,all,GPU
+9,0.579861111111111,REVE fine-tuned,everyone's day 1,10 %,all,GPU

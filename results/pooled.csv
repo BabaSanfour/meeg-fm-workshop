@@ -1,0 +1,28 @@
+subject,method,balanced_accuracy,training_data
+1,CSP + LDA,0.6597222222222222,everyone's day 1
+2,CSP + LDA,0.5347222222222222,everyone's day 1
+3,CSP + LDA,0.9027777777777778,everyone's day 1
+4,CSP + LDA,0.7708333333333333,everyone's day 1
+5,CSP + LDA,0.6111111111111112,everyone's day 1
+6,CSP + LDA,0.6180555555555556,everyone's day 1
+7,CSP + LDA,0.6041666666666667,everyone's day 1
+8,CSP + LDA,0.9513888888888888,everyone's day 1
+9,CSP + LDA,0.7222222222222223,everyone's day 1
+1,Tangent space + LR,0.8125,everyone's day 1
+2,Tangent space + LR,0.5138888888888888,everyone's day 1
+3,Tangent space + LR,0.8333333333333334,everyone's day 1
+4,Tangent space + LR,0.5138888888888888,everyone's day 1
+5,Tangent space + LR,0.5625,everyone's day 1
+6,Tangent space + LR,0.6458333333333333,everyone's day 1
+7,Tangent space + LR,0.7083333333333333,everyone's day 1
+8,Tangent space + LR,0.9305555555555556,everyone's day 1
+9,Tangent space + LR,0.7638888888888888,everyone's day 1
+1,REVE frozen + LR,0.7916666666666667,everyone's day 1
+2,REVE frozen + LR,0.6180555555555556,everyone's day 1
+3,REVE frozen + LR,0.8541666666666667,everyone's day 1
+4,REVE frozen + LR,0.7152777777777778,everyone's day 1
+5,REVE frozen + LR,0.5694444444444444,everyone's day 1
+6,REVE frozen + LR,0.5972222222222222,everyone's day 1
+7,REVE frozen + LR,0.75,everyone's day 1
+8,REVE frozen + LR,0.875,everyone's day 1
+9,REVE frozen + LR,0.8055555555555556,everyone's day 1
