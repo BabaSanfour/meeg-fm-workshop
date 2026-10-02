@@ -1,0 +1,5 @@
+model,balanced_accuracy
+REVE,70.7
+CBraMod,59.0
+LaBraM,52.3
+LUNA,52.3
