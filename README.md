@@ -11,7 +11,7 @@ They are in `notebooks/`. Run them in order: each one saves its scores in `noteb
 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/notebooks/00_setup.ipynb) | `00_setup` | Check the computer, download the data |
 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/notebooks/01_data.ipynb) | `01_data` | The experiment, mu and beta rhythms, hand-made features and a first model |
 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/notebooks/02_classical.ipynb) | `02_classical` | CSP + LDA, tangent space + logistic regression |
-| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/notebooks/03_fm_frozen.ipynb) | `03_fm_frozen` | REVE embeddings and a linear probe |
+| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/notebooks/03_fm_frozen.ipynb) | `03_fm_frozen` | Load REVE, embeddings and a linear probe, three other pretrained models |
 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/notebooks/04_fm_finetune.ipynb) | `04_fm_finetune` | How a network learns, fine-tuning REVE |
 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BabaSanfour/meeg-fm-workshop/blob/main/notebooks/05_compare.ipynb) | `05_compare` | One table, per-person scores, confidence intervals and tests |
 
@@ -40,7 +40,7 @@ A laptop is enough. Fine-tuning (notebook 4) needs a GPU, so its runs are saved 
 ## Layout
 
 - `notebooks/`: the six notebooks, and `results/` with the scores written by notebooks 2 to 4.
-- `meeg_fm/`: the helper code (data, REVE, fine-tuning), the two scripts that produced the saved fine-tuning runs, the cached REVE embeddings (`cache/`) and those saved runs (`precomputed/`).
+- `meeg_fm/`: the helper code (data, figures, scoring, other models, fine-tuning), the two scripts that produced the saved fine-tuning runs, the cached REVE embeddings (`cache/`) and those saved runs (`precomputed/`).
 - `figures/`: the concept figures embedded in the notebooks, and the script that draws them.
 
 ## Licence
